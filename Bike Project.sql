@@ -26,3 +26,15 @@ SELECT SUM(cnt), ((t1 * (9/5)) + 32) as temp
 FROM BikeProject..Bikes
 GROUP BY t1
 ORDER BY t1
+
+-- Avg shares and humidity for each season
+SELECT season, AVG(cnt) AS average_count, AVG(hum) AS average_humidity
+FROM BikeProject..Bikes
+GROUP BY season
+ORDER BY season
+
+-- Avg shares for each day of the week
+SELECT DATENAME(WEEKDAY, [timestamp]) AS day_of_week, AVG(cnt) AS average_count
+FROM BikeProject..Bikes
+GROUP BY DATENAME(WEEKDAY, [timestamp])
+ORDER BY DATENAME(WEEKDAY, [timestamp])
