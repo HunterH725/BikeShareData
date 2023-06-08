@@ -38,3 +38,31 @@ SELECT DATENAME(WEEKDAY, [timestamp]) AS day_of_week, AVG(cnt) AS average_count
 FROM BikeProject..Bikes
 GROUP BY DATENAME(WEEKDAY, [timestamp])
 ORDER BY DATENAME(WEEKDAY, [timestamp])
+
+-- Calculate the average shares for regular weekdays
+SELECT
+'Regular Weekday' AS period,
+AVG(cnt) AS average_count
+FROM
+BikeProject..Bikes
+WHERE
+is_holiday = 0
+AND is_weekend = 0;
+
+-- Calculate the average shares for holidays
+SELECT
+'Holiday' AS period,
+AVG(cnt) AS average_count
+FROM
+BikeProject..Bikes
+WHERE
+is_holiday = 1;
+
+-- Calculate the average shares for weekends
+SELECT
+'Weekend' AS period,
+AVG(cnt) AS average_count
+FROM
+BikeProject..Bikes
+WHERE
+is_weekend = 1;
